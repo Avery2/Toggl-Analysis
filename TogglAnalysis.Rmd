@@ -2,7 +2,14 @@
 title: "TogglAnalysis"
 author: "Avery Chan"
 date: "5/30/2021"
-output: html_document
+output:
+  html_document:
+    # toc: yes
+    # toc_float: true
+    # number_sections: true
+    # theme: united
+    df_print: paged
+    code_folding: show
 ---
 
 ```{r setup, include=FALSE}
@@ -74,6 +81,11 @@ timeWork / dyears(1)
 #   slice_max(`Start date`)
 ```
 
+Heat map of when during the day I worked
+
+Heat map of sorts of type of work I did when
+
+See if you can distinguish schedules that were established at any point in time. Bonus points if I do this numerically with differences or something.
 
 
 
