@@ -1,0 +1,90 @@
+---
+title: "TogglAnalysis"
+author: "Avery Chan"
+date: "5/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+```{r import data}
+data2020 <- read_csv("Toggl_time_entries_2020-01-01_to_2020-12-31.csv")
+data2021 <- read_csv("Toggl_time_entries_2021-01-01_to_2021-12-31.csv")
+
+# glimpse(data2020)
+```
+
+```{r clean data}
+data2020 <- data2020 %>%
+  select(Project,
+         Description,
+         `Start date`,
+         `Start time`,
+         `End date`,
+         `End time`,
+         Duration,
+         Tags)
+data2021 <- data2021 %>%
+  select(Project,
+         Description,
+         `Start date`,
+         `Start time`,
+         `End date`,
+         `End time`,
+         Duration,
+         Tags)
+glimpse(data2020)
+```
+
+```{r}
+data2020 %>% 
+  group_by(Project) %>% 
+  summarise(
+    n = n(),
+    hms = sum(Duration) %>% hms::as_hms(),
+    sec = sum(Duration)
+  )
+
+timeWorkHMS <- data2020 %>% 
+  pull(Duration) %>% 
+  sum() %>% 
+  hms::as_hms()
+
+timeWork <- data2020 %>% 
+  pull(Duration) %>% 
+  sum()
+
+# fraction of entire time spent working
+timeWork / dyears(1)
+
+# estimated sleep fraction if I sleep 7 hours each night
+365 * dhours(7) / dyears(1)
+
+# 8 hours
+365 * dhours(8) / dyears(1)
+
+# data2020 %>% 
+#   slice_min(`Start date`)
+# 
+# data2020 %>% 
+#   slice_max(`Start date`)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
