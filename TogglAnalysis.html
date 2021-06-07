@@ -1697,6 +1697,10 @@ pre code {
 </div>
 
 
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<div id="import-the-data" class="section level3">
+<h3>Import the data</h3>
 <pre class="r"><code>data2020 &lt;- read_csv(&quot;Toggl_time_entries_2020-01-01_to_2020-12-31.csv&quot;)</code></pre>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -1736,6 +1740,9 @@ pre code {
 ##   `Amount ()` = col_logical()
 ## )</code></pre>
 <pre class="r"><code># glimpse(data2020)</code></pre>
+</div>
+<div id="clean-data" class="section level3">
+<h3>Clean Data</h3>
 <pre class="r"><code>data2020 &lt;- data2020 %&gt;%
   select(Project,
          Description,
@@ -1800,9 +1807,25 @@ timeWork / dyears(1)</code></pre>
 # 
 # data2020 %&gt;% 
 #   slice_max(`Start date`)</code></pre>
-<p>Heat map of when during the day I worked</p>
-<p>Heat map of sorts of type of work I did when</p>
+</div>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div id="basic-grouping" class="section level3">
+<h3>Basic Grouping</h3>
+<p>Basic grouping by category</p>
+</div>
+<div id="heatmap" class="section level3">
+<h3>Heatmap</h3>
+<p>Heat map of when during the day I worked Heat map of sorts of type of work I did when Possible heatmap of what times I work at (and what type when)</p>
+</div>
+<div id="scheuldes" class="section level3">
+<h3>Scheuldes</h3>
 <p>See if you can distinguish schedules that were established at any point in time. Bonus points if I do this numerically with differences or something.</p>
+<p>Productivty over time vs what I was doing (ie time spent working during semester and summer and weekend and weekday)</p>
+<p>It’s interesting I independently (two times) came up with the same questions - I am interested in seeing this.</p>
+</div>
+</div>
 
 
 

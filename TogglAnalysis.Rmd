@@ -12,11 +12,15 @@ output:
     code_folding: show
 ---
 
+## Setup
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 ```
+
+### Import the data
 
 ```{r import data}
 data2020 <- read_csv("Toggl_time_entries_2020-01-01_to_2020-12-31.csv")
@@ -24,6 +28,8 @@ data2021 <- read_csv("Toggl_time_entries_2021-01-01_to_2021-12-31.csv")
 
 # glimpse(data2020)
 ```
+
+### Clean Data
 
 ```{r clean data}
 data2020 <- data2020 %>%
@@ -80,14 +86,30 @@ timeWork / dyears(1)
 # data2020 %>% 
 #   slice_max(`Start date`)
 ```
+## Analysis
+
+### Basic Grouping
+
+Basic grouping by category
+
+```{r}
+
+```
+
+
+### Heatmap
 
 Heat map of when during the day I worked
-
 Heat map of sorts of type of work I did when
+Possible heatmap of what times I work at (and what type when)
+
+### Scheuldes
 
 See if you can distinguish schedules that were established at any point in time. Bonus points if I do this numerically with differences or something.
 
+Productivty over time vs what I was doing (ie time spent working during semester and summer and weekend and weekday)
 
+It's interesting I independently (two times) came up with the same questions - I am interested in seeing this.
 
 
 
