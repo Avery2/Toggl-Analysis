@@ -7,9 +7,9 @@ output:
     # toc: yes
     # toc_float: true
     # number_sections: true
-    # theme: united
+    theme: united
     df_print: paged
-    code_folding: show
+    code_folding: hide
 ---
 
 ## Setup
@@ -18,13 +18,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
+theme_set(theme_bw())
 ```
 
 ### Import the data
 
 ```{r import data}
-data2020 <- read_csv("Toggl_time_entries_2020-01-01_to_2020-12-31.csv")
-data2021 <- read_csv("Toggl_time_entries_2021-01-01_to_2021-12-31.csv")
+data2020 <- read_csv("Toggl_time_entries_2020-01-01_to_2020-12-31.csv", col_types = cols())
+data2021 <- read_csv("Toggl_time_entries_2021-01-01_to_2021-12-31.csv", col_types = cols())
 
 # glimpse(data2020)
 ```
@@ -50,11 +51,11 @@ data2021 <- data2021 %>%
          `End time`,
          Duration,
          Tags)
-glimpse(data2020)
+# glimpse(data2020)
 ```
 
 ```{r}
-data2020 %>% 
+grouped_data <- data2020 %>% 
   group_by(Project) %>% 
   summarise(
     n = n(),
@@ -72,13 +73,13 @@ timeWork <- data2020 %>%
   sum()
 
 # fraction of entire time spent working
-timeWork / dyears(1)
+foo <- timeWork / dyears(1)
 
 # estimated sleep fraction if I sleep 7 hours each night
-365 * dhours(7) / dyears(1)
+bar <- 365 * dhours(7) / dyears(1)
 
 # 8 hours
-365 * dhours(8) / dyears(1)
+time <- 365 * dhours(8) / dyears(1)
 
 # data2020 %>% 
 #   slice_min(`Start date`)
@@ -93,7 +94,20 @@ timeWork / dyears(1)
 Basic grouping by category
 
 ```{r}
+grouped <- data2020 %>% 
+  group_by(Project) %>% 
+  summarise(
+    n = n(),
+    hms = sum(Duration) %>% hms::as_hms(),
+    sec = sum(Duration)
+  )
 
+grouped %>% 
+  ggplot(aes(y = reorder(Project, n), weight=n, fill = Project)) +
+  geom_bar() +
+  xlab("Hours") +
+  ylab("Group") +
+  ggtitle("Time Spent per Group")
 ```
 
 
