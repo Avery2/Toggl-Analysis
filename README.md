@@ -2,6 +2,7 @@
 
 I tracked all my worked hours for over a year. This (will be) an analysis of that.
 
+https://www.averychan.site/Toggl-Analysis/
 
 ## Places to do more
 
